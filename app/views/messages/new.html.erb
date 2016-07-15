@@ -1,0 +1,15 @@
+<%= form_for [@conversation, @message] do |f| %>
+<div class="field">
+    <%= f.text_area :title, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <div>
+   <%= f.text_field :read, value: :false, type: "hidden"  %>
+  <div>
+    <%= f.submit "Add Reply"%>
+  </div>
+
+<% end %>

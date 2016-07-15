@@ -14,6 +14,7 @@
 	  	<% if current_user %>
 	  		<li class="nav-item active">
 		      <%= link_to "Log Out #{current_user.email}" ,logout_path ,method: 'delete', class: ' nav-link ' %>
+		       <%= link_to "Mailbox", conversations_path, class: "nav-link" %>
 		    </li>
 	  	<% else %>
 		    <li class="nav-item active">
