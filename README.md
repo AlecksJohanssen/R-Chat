@@ -53,7 +53,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
-My database design was really stupid, so I have to spend a lot of time fix it and also to get the data out of it 
+
+** My database design was really stupid, so I have to spend a lot of time fix it and also to get the data out of it **
 
 ## License
 
