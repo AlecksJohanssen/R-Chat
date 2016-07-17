@@ -9,30 +9,43 @@
   </head>
 
   <body>
-	 <nav class="navbar navbar-light bg-faded">
-	  <ul class="nav navbar-nav">
-	  	<% if current_user %>
+
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href=<%=root_path %> class="brand-logo">RChat</a>
+      <ul class="right hide-on-med-and-down">
+      <% if current_user %>
 	  		<li class="nav-item active">
 		      <%= link_to "Log Out #{current_user.email}" ,logout_path ,method: 'delete', class: ' nav-link ' %>
-		       <%= link_to "Mailbox", conversations_path, class: "nav-link" %>
+		      <li class="nav-item active">
+		      <%= link_to 'View Friends', user_path(current_user), class: 'nav-link' %>
+		    </li>
 		    </li>
 	  	<% else %>
 		    <li class="nav-item active">
-		      <%= link_to 'Create An Account', new_user_path, class: ' nav-link ' %>
+		      <%= link_to 'Create An Account', new_user_path, class: 'nav-link' %>
 		    </li>
 		    <li class="nav-item active">
 		      <%= link_to 'Log In', new_session_path, class: ' nav-link ' %>
 		    </li>
 		<% end %>
-	  </ul>
-	</nav>
+        <li> <%= link_to "Mailbox", conversations_path, class: "nav-link" %></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
 	<% unless flash.empty? %>
 		<% flash.each do |key, value| %>
 			<div class="alert alert-danger"><%= value %></div>
+		<% end %>
 	<% end %>
-	<% end %>
-  	<div class="container">
+ 
    		<%= yield %>
-    </div>
+    
   </body>
 </html>

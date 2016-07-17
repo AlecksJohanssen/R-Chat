@@ -1,13 +1,21 @@
 class UsersController < ApplicationController
 	def index
+
 		Rails.logger.info request.env["HTTP_COOKIE"]
+		@users = User.where.not(id: current_user.id)
 		@users = User.all
+		# @users = User.where('id != (?)', current_user.id)
 	end
 
 	def new
 		@user = User.new
-		
-	end 
+
+	end
+
+	def show
+		@friendships = Friendship.all
+		@users = User.all
+	end
 
 	def create
 		@user = User.new user_params

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :friendships
 	delete '/logout' => 'sessions#destroy'
 	resources :sessions, only: [:new , :create]
-	root 'users#index'
+	root 'home#index'
   resources :users
   
   resources :conversations do
