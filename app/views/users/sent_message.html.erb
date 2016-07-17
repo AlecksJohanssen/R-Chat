@@ -1,0 +1,7 @@
+<h1> Sent Messages </h1>
+<% @sent_messages.each do |sent_message| %>
+ <%= 'Receipient:' + User.find_by_id(sent_message.conversation.recipient_id).name %>
+ <%= sent_message.body %>
+ <br/>	
+<% end %>
+<%= console %>

@@ -2,15 +2,34 @@
  <h3>Mailbox</h3>
  <div class="ui list">
   <div class=”item”>
-   <% @conversations.each do |conversation| %>
-   <% if conversation.sender_id == current_user.id    ||    conversation.recipient_id == current_user.id %>
-    <% if conversation.sender_id == current_user.id %>
-      <% recipient = User.find(conversation.recipient_id) %>
-    <% else %>
-      <% recipient = User.find(conversation.sender_id) %>
-    <% end %>
-    <%= link_to recipient.name, conversation_messages_path(conversation)%>
+  <!-- Test đi, nhớ remove comments nha =))) okay a =)) -->
+  <!-- CLGT chú, chú đã thấy code chú khó bảo trì chưa =))), tập thụt dô đi nha -->
+    <% @conversations.each do |conversation| %>
+      <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+      <% if conversation.sender_id == current_user.id %>
+        <% recipient = User.find(conversation.recipient_id) %>
+      <% else %>
+        <% recipient = User.find(conversation.sender_id) %>
+      <% end %>
     
+      <table class="table">
+        <thead class="thead thead-default">
+          <tr>
+            <th>Name</th>
+            <th>Content</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to recipient.name, conversation_messages_path(conversation)%></td>
+            <% if conversation.messages.last.read_at == nil %>
+              <td><strong><%= conversation.messages.last.body %></strong></td>
+            <% else %>
+              <td><%= conversation.messages.last.body %></td>   
+            <% end %> 
+          </tr>
+        </tbody>
+    </table>
    <% end %>
   <% end %>
   </div>

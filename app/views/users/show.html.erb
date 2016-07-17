@@ -1,21 +1,30 @@
-<h2>Friends</h2>
+<h2>Friends List</h2>
+
+<table class="table">
+	<thead class="thead thead-default">
+		<tr>
+			<th>Friend Name</th>
+			<th>Email</th>
+			<th>Created At</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		 <% @friendships.each do |friendship|  %>
+				<tr>
+					<td><%= friendship.friend.name %></td>
+					<td><%= friendship.friend.email %></td>
+					<td><%= time_ago_in_words friendship.friend.created_at %></td>
+					<td>
+						<%= link_to "remove", friendship, :method => :delete, class: "btn btn-danger" %>
+					</td>
+				</tr>
+		<% end %>
+	</tbody>
+</table>
 <ul>
-  <% @friendships.each do |friendship|  %>
-    <li>
-      <%= friendship.friend.name %>
-      <%= link_to "remove", friendship, :method => :delete %>
-    </li>
-  <% end %>
-</ul>
 
-<p><%= link_to "Find Friends", users_path %></p>
+ 
 
-<h2>Friended by Users</h2>
-<ul>
 
-  <% @users.each do |user|  %>
-   <% if user.id != current_user.id %>
-    <li><%= user.name %></li>
-  <% end %>
-  <% end %>
-</ul>
+<p><%= link_to "Find Friends", users_path, class: 'btn btn-default' %></p>

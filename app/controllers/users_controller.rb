@@ -2,8 +2,9 @@ class UsersController < ApplicationController
 	def index
 
 		Rails.logger.info request.env["HTTP_COOKIE"]
-		@users = User.where.not(id: current_user.id)
 		@users = User.all
+		@users = User.where.not(id: current_user.id)
+		
 		# @users = User.where('id != (?)', current_user.id)
 	end
 
@@ -15,6 +16,20 @@ class UsersController < ApplicationController
 	def show
 		@friendships = Friendship.all
 		@users = User.all
+
+	end
+
+	def sent_message
+		@current_user_conversations = Conversation.where('sender_id = ?',current_user.id)
+		# @sent_messages = current_user_conversations.first.messages
+		@sent_messages = []
+		@current_user_conversations.each do |current_user_conversation|
+			@test_sent_messages = current_user_conversation.messages.map {|message| message}
+			# current_user_conversation.messages.each do |message|
+			# 	@sent_messages = @sent_messages.insert(message)
+			# end
+			@sent_messages.insert(@test_sent_messages)
+		end
 	end
 
 	def create

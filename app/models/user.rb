@@ -3,6 +3,8 @@ class User < ApplicationRecord
 	has_many :friendships
 	# has_many :sent_messages,
 	# hasy_many :received_messages,
+	has_many :messages
+	belongs_to :conversations
 	has_many :friends, :through => :friendships
 	has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
 	has_many :inverse_friends, :through => :inverse_friendships, :source => :user
@@ -13,11 +15,16 @@ class User < ApplicationRecord
 	def received_messages
     	where(recipient: self)
   	end
+
   	def last_online
   		self.created_at = Time.now
-  		save!
   	end
+
 	def is_friend?(user)
 		self.friend_ids.include?(user.id)
+	end
+
+	def sent_messages
+
 	end
 end
