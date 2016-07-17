@@ -6,7 +6,7 @@
 			<th>Name</th>
 			<th>Email</th>
 			<th>Created At</th>
-			<th>Sent Messages</th>
+			
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -17,7 +17,7 @@
 					<td><%= user.email %></td>
 					
 					<td><%= time_ago_in_words user.created_at%></td>
-					<td><%= link_to current_user.messages.first.body,sent_message_path %></td>
+
 					<td>
 						<%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: "btn btn-primary" %>
 					</td>

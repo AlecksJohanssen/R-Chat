@@ -9,9 +9,8 @@ class ApplicationController < ActionController::Base
   		end
 	end
 
-	# kiểm tra coi login chưa
-	# có rùi, xài thôi pa, thừa kết đó, java có thừa kế mà
 	def authenticate_user!
 		redirect_to root_path unless current_user
 	end
+	
 end

@@ -1,5 +1,0 @@
-<% if current_user.id != @conversation.sender_id %>
-	<% @conversation.messages.each do |message| %>
-		<% message.body %>
-	<% end %>
-<% end %>

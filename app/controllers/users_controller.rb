@@ -19,16 +19,16 @@ class UsersController < ApplicationController
 
 	end
 
+	# THIS IS MY DESIGN RIGHT HERE
 	def sent_message
 		@current_user_conversations = Conversation.where('sender_id = ?',current_user.id)
 		# @sent_messages = current_user_conversations.first.messages
 		@sent_messages = []
 		@current_user_conversations.each do |current_user_conversation|
-			@test_sent_messages = current_user_conversation.messages.map {|message| message}
-			# current_user_conversation.messages.each do |message|
-			# 	@sent_messages = @sent_messages.insert(message)
-			# end
-			@sent_messages.insert(@test_sent_messages)
+			# @test_sent_messages = current_user_conversation.messages.map {|message| message}
+			current_user_conversation.messages.each do |message|
+				@sent_messages << message
+			end
 		end
 	end
 
